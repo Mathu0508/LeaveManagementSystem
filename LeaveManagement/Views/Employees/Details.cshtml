@@ -1,0 +1,42 @@
+﻿@model LeaveManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg bg-light p-4">
+        <h2 class="text-center text-primary"><i class="bi bi-person-fill"></i> Employee Details</h2>
+        <p class="text-center text-muted">View complete details of the employee.</p>
+
+        <div class="card bg-white p-3 shadow-sm">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold"><i class="bi bi-person"></i> @Html.DisplayNameFor(model => model.Name)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-3 fw-bold"><i class="bi bi-envelope-fill"></i> @Html.DisplayNameFor(model => model.Email)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+                <dt class="col-sm-3 fw-bold"><i class="bi bi-shield-lock-fill"></i> @Html.DisplayNameFor(model => model.PasswordHash)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PasswordHash)</dd>
+
+                <dt class="col-sm-3 fw-bold"><i class="bi bi-person-badge-fill"></i> @Html.DisplayNameFor(model => model.Role)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Role)</dd>
+
+                <dt class="col-sm-3 fw-bold"><i class="bi bi-calendar-check-fill"></i> @Html.DisplayNameFor(model => model.LeaveBalance)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LeaveBalance)</dd>
+            </dl>
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
+            <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,70 @@
+﻿@model LeaveManagement.Models.Leave
+
+@{
+    ViewData["Title"] = "Edit Leave";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg bg-light p-4">
+        <h2 class="text-center text-primary"><i class="bi bi-pencil-square"></i> Edit Leave</h2>
+        <p class="text-center text-muted">Modify the leave details below.</p>
+
+        <div class="card bg-white p-4 shadow-sm">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="EmployeeId" class="form-label fw-bold text-primary"><i class="bi bi-person"></i> Employee</label>
+                    <select asp-for="EmployeeId" class="form-select" asp-items="ViewBag.EmployeeId"></select>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="StartDate" class="form-label fw-bold text-primary"><i class="bi bi-calendar-event"></i> Start Date</label>
+                    <input asp-for="StartDate" class="form-control" type="date" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="EndDate" class="form-label fw-bold text-primary"><i class="bi bi-calendar-event"></i> End Date</label>
+                    <input asp-for="EndDate" class="form-control" type="date" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Type" class="form-label fw-bold text-primary"><i class="bi bi-card-list"></i> Leave Type</label>
+                    <input asp-for="Type" class="form-control" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label fw-bold text-primary"><i class="bi bi-info-circle"></i> Status</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Reason" class="form-label fw-bold text-primary"><i class="bi bi-chat-left-text"></i> Reason</label>
+                    <textarea asp-for="Reason" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

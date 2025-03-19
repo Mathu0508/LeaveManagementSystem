@@ -1,0 +1,62 @@
+﻿@model LeaveManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary mb-4">Create Employee</h2>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-bold"><i class="bi bi-person-fill"></i> Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold"><i class="bi bi-envelope-fill"></i> Email</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Enter email address" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PasswordHash" class="form-label fw-bold"><i class="bi bi-key-fill"></i> Password</label>
+                        <input asp-for="PasswordHash" type="password" class="form-control" placeholder="Enter password" />
+                        <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Role" class="form-label fw-bold"><i class="bi bi-person-badge-fill"></i> Role</label>
+                        <select asp-for="Role" class="form-select">
+                            <option value="">Select Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Manager">Manager</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

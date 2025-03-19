@@ -1,0 +1,63 @@
+﻿@model IEnumerable<LeaveManagement.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4 bg-light">
+        <h2 class="text-center text-primary mb-4"><i class="bi bi-people-fill"></i> Employee List</h2>
+
+        <div class="text-end mb-3">
+            <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New Employee</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered bg-white">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th><i class="bi bi-person-fill"></i> @Html.DisplayNameFor(model => model.First().Name)</th>
+                        <th><i class="bi bi-envelope-fill"></i> @Html.DisplayNameFor(model => model.First().Email)</th>
+                        <th><i class="bi bi-key-fill"></i> Password</th>
+                        <th><i class="bi bi-person-badge-fill"></i> @Html.DisplayNameFor(model => model.First().Role)</th>
+                        <th><i class="bi bi-calendar-check-fill"></i> @Html.DisplayNameFor(model => model.First().LeaveBalance)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>••••••••</td> @* Masked Password for Security *@
+                            <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                            <td>@Html.DisplayFor(modelItem => item.LeaveBalance)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">
+                                    <i class="bi bi-eye-fill"></i> Details
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-3">
+            <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
